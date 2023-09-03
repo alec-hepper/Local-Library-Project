@@ -37,8 +37,12 @@ function getMostCommonGenres(books) {
   return countArray.slice(0,5);
 }
 
+function getBorrows(books) {
+  return books.map(book => ({name : book.title, count : book.borrows.length}));
+}
+
 function getMostPopularBooks(books) {
-  const borrows = books.map(book => ({name : book.title, count : book.borrows.length}));
+  let borrows = getBorrows(books);
   borrows.sort((a,b) => b.count - a.count);
   return borrows.slice(0,5);
 }
