@@ -35,14 +35,18 @@ function getBorrowersForBook(book, accounts) {
   let result = [];
   // Deconstruct the provided book's 'borrows' array.
   let borrowArray = book.borrows;
-  // Using the .forEach method on the 'borrows' array to...
+  // Using the .forEach method on the 'borrows' array to loop through each borrow in the array.
   borrowArray.forEach(borrow => {
-    
+    // Find the account id that matches the currently indexed borrow id.
     let account = accounts.find(acc => acc.id === borrow.id);
+    // Deconstruct the matching account object.
     let obj = account;
+    // Add the returned status from the borrow array into our account object.
     obj['returned'] = borrow.returned;
+    // Push the updated account object into the result array.
     result.push(obj);
   })
+  // Return the result array, and use the .slice method to limit the array to 10 objects max.
   return result.slice(0, 10);
 }
 
